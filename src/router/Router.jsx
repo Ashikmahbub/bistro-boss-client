@@ -1,14 +1,20 @@
-import React from 'react';
-mport {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
+ 
+import Main from '../Layout/Main';
+import Home from '../pages/Home';
+import {createBrowserRouter} from "react-router-dom";
 
   export const router = createBrowserRouter([
     {
       path: "/",
-      element: <div>Hello world!</div>,
+      element: <Main></Main>,
+      children:[
+        {
+          path:'/',
+          element:<Home></Home>
+
+        }
+      ]
     },
   ]);
 
-export default Router;
+ 
