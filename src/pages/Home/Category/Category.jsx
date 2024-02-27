@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+ 
 import "swiper/css/pagination";
+import 'swiper/css/navigation';
 import { Pagination } from "swiper/modules";
 import slide1 from "../../../assets/home/slide1.jpg";
 import slide2 from "../../../assets/home/slide2.jpg";
@@ -11,7 +13,7 @@ import SectionTitle from "../../../components/SectionTilte/SectionTitle";
 
 const Catagory = () => {
   return (
-   <section>
+   <section className="">
     <SectionTitle
      subHeading ={"From 11.00 am to 10.00 pm"}
      heading = {"Order Online"}
@@ -19,14 +21,15 @@ const Catagory = () => {
      
     </SectionTitle>
     <Swiper
-      slidesPerView={4}
+      slidesPerView={6}
       spaceBetween={30}
-      centeredSlides={true}
+      
       pagination={{
         clickable: true,
       }}
       modules={[Pagination]}
       className="mySwiper mb-24 py-10"
+    
     >
       <SwiperSlide>
         <img src={slide1} alt="" />
@@ -46,9 +49,19 @@ const Catagory = () => {
       </SwiperSlide>
       <SwiperSlide>
         <img src={slide5} alt="" />
-        <h3 className="text-4xl uppercase text-center -mt-16 text-white">Salad</h3>
+        <h3 className="text-4xl uppercase text-center -mt-16 text-white">Desert</h3>
       </SwiperSlide>
+      <SwiperSlide>
+        <img src={slide5} alt="" />
+        <h3 className="text-4xl uppercase text-center -mt-16 text-white">Desert</h3>
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src={slide5} alt="" />
+        <h3 className="text-4xl uppercase text-center -mt-16 text-white">Desert</h3>
+      </SwiperSlide>
+      
     </Swiper>
+       
    </section>
   );
 };
