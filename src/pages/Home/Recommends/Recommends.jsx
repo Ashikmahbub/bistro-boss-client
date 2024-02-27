@@ -8,19 +8,21 @@ const Recommends = () => {
     fetch("menu.json")
       .then((res) => res.json())
       .then((data) => {
-         const chefRecommends = data.filter(item =>item.category==='offered')
+        const chefRecommends = data.filter(
+          (item) => item.category === "pizza"
+        );
         setItems(chefRecommends);
       });
-  },[]);
+  }, []);
   return (
     <section>
       <SectionTitle
         heading="chef recommends"
         subHeading="Should Try"
       ></SectionTitle>
-      <div className="grid grid-cols-3    px-5 gap-4">
+      <div className="grid  grid-cols-3  px-5 gap-4">
         {items.map((item) => (
-          <RecommendItem key={item._id} item={item}></RecommendItem>
+          <RecommendItem key={item._id} item={item} />
         ))}
       </div>
     </section>
