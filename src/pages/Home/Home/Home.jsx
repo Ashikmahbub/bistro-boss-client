@@ -6,6 +6,7 @@ import PopularMenu from "../PopularMenu/PopularMenu";
 import RecommendItem from "../../../shared/RecommendItem/RecommendItem";
 import Recommends from "../Recommends/Recommends";
 import TestiMonials from "../TestiMonials/TestiMonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
@@ -17,6 +18,9 @@ const Home = () => {
       <RecommendItem></RecommendItem>
       <Featured></Featured>
       <TestiMonials></TestiMonials>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       
       
     </div>
