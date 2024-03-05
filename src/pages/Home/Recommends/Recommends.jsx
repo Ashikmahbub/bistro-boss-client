@@ -20,7 +20,7 @@ const Recommends = () => {
         heading="chef recommends"
         subHeading="Should Try"
       ></SectionTitle>
-      <div className="grid  grid-cols-3  px-5 gap-4">
+      <div className="grid  grid-cols-4  px-10 gap-6 gap-x-6">
         {items.map((item) => (
           <RecommendItem key={item._id} item={item} />
         ))}

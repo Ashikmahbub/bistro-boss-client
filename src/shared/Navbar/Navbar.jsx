@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <div className="navbar z-10 bg-opacity-30 max-w-screen-xl bg-black text-white fixed">
+        <div className="navbar z-10   max-w-screen-xl bg-black text-white fixed">
           <div className="navbar-start">
             <div className="dropdown">
               <div
@@ -64,7 +64,7 @@ const Navbar = () => {
               </li>
 
               <li>
-                <a>Item 3</a>
+                <Link to={"/order"}>Order</Link>
               </li>
             </ul>
           </div>

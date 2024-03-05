@@ -5,7 +5,7 @@ const RecommendItem = ({ item }) => {
 
   return (
     
-      <div className="card w-96 bg-base-100 shadow-xl overflow-hidden">
+      <div className="card w-70 bg-base-100 shadow-xl overflow-hidden">
         <figure>
           <img src={image} alt={name} className="rounded transition-transform duration-700 ease-in-out transform hover:scale-150 w-100% h-full object-cover" />
           
