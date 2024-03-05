@@ -4,7 +4,7 @@ import {createBrowserRouter} from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Menu from "../pages/Home/Menu/Menu/Menu";
-import OrderFood from "../pages/OrderFood/OrderFood";
+import OrderFood from "../pages/Order/OrderFood/OrderFood";
 
   export const router = createBrowserRouter([
     {
