@@ -1,19 +1,19 @@
 const FoodCard = ({item}) => {
     const {name,image,price,recipe} =item;
   return (
-    <div>
+    <div className="text-center">
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img
             src={image}
-            alt="Shoes"
+            alt="food"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{name}</h2>
+          <h2 className="card-title justify-center">{name}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Add to Cart</button>
+          <div className="card-actions justify-center">
+            <button className="btn btn-outline border-0 text-orange-400 hover:bg-black hover:text-orange-400 border-b-4 bg-slate-100">Add to Cart</button>
           </div>
         </div>
       </div>

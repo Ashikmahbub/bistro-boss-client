@@ -21,7 +21,7 @@ import OrderFood from "../pages/Order/OrderFood/OrderFood";
           element:<Menu></Menu>
         },
         {
-          path:'order',
+          path:'order/:category',
           element:<OrderFood></OrderFood>
         }
       ]

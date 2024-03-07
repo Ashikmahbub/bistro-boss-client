@@ -17,7 +17,7 @@ const RecommendItem = ({ item }) => {
           <h2 className="card-title">{name}</h2>
           <p>{recipe}</p>
           <div className="card-actions">
-            <button className="btn btn-primary border-none hover:bg-black bg-red-600 text-white">
+            <button className="btn btn-outline border-0 text-orange-400 hover:bg-black hover:text-orange-400 border-b-4 bg-slate-100">
               Add To Cart
             </button>
           </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
     const [menu, setMenu] = useState([]);
     const [loading,setLoding] = useState(true);
   useEffect(() => {
-    fetch("menu.json")
+    fetch("http://localhost:5000/menu")
       .then((res) => res.json())
       .then((data) => {
          
