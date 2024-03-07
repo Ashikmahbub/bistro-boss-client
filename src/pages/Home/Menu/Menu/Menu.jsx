@@ -6,6 +6,7 @@ import dessertImg from "../../../../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../../assets/menu/salad-bg.jpg";
 import soupImg from "../../../../assets/menu/soup-bg.jpg";
+import offerIMG from "../../../../assets/shop/banner2.jpg";
 import SectionTitle from "../../../../components/SectionTilte/SectionTitle";
 import useMenu from "../../../../useMenu";
 import MenuCategory from "../MenuCategory/MenuCategory";
@@ -27,11 +28,16 @@ const Menu = () => {
       <Cover img={menuImg} title="our menu"></Cover>
       <SectionTitle
         subHeading="Don't Miss"
+        
         heading="Today's Offer"
       ></SectionTitle>
       {/* offered menu items */}
 
-      <MenuCategory items={offered}></MenuCategory>
+      <MenuCategory 
+      title={"offer"}
+      items={offered}
+      coverImg={offerIMG}
+      ></MenuCategory>
       {/* desert menu items */}
       <MenuCategory
         items={dessert}
