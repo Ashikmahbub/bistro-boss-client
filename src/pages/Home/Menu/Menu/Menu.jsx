@@ -20,9 +20,7 @@ const Menu = () => {
   const salad = menu.filter((item) => item.category === "salad");
   return (
     <div>
-      <Helmet>
-        <title>Our Menu</title>
-      </Helmet>
+       
       {/* Main Cover */}
 
       <Cover img={menuImg} title="our menu"></Cover>

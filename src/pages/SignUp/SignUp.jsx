@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { Zoom } from "swiper/modules";
 
 
 const SignUp = () => {
     const {register,handleSubmit,watch,formState:{errors} } = useForm();
-    const onSubmit = data => console.log(data);
+    const onSubmit = data => console.log(watch(data));
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200">
+    <>
+  
+
+<div>
+    <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Sign up now!</h1>
@@ -55,11 +59,22 @@ const SignUp = () => {
                 <input
                   type="password"
                   name="password"
-                  {...register('password',{required:true,min:6 ,maxLength:20})}
+                  {...register('password',{
+                  required:true,
+                  min:6 ,
+                  maxLength:20,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/ 
+                
+                  })}
                   placeholder="password"
                   className="input input-bordered"
+                  />
+                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password is required</p>}
+                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must be 6 charracters</p>}
+                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must be less than 20 charracters</p>}
+                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must have one uppercase and one lowercase and one number</p>}
+
                 
-                />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -75,6 +90,8 @@ const SignUp = () => {
         </div>
       </div>
     </div>
+    
+    </>
   );
 };
 

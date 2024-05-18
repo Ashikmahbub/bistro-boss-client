@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../components/Provider/Authprovider';
 import { Link } from 'react-router-dom';
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const captchaRef = useRef(null);
@@ -36,7 +37,10 @@ const Login = () => {
         })
     }
     return (
-      <div>
+     <>
+        <title>Our Menu</title>
+      
+         <div>
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -72,6 +76,12 @@ const Login = () => {
         </div>
       </div>
     </div> 
+     
+     
+     
+     
+     
+     </>
     );
 };
 
