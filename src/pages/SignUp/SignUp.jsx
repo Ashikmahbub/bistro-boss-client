@@ -1,13 +1,24 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Zoom } from "swiper/modules";
+import { AuthContext } from "../../components/Provider/Authprovider";
 
 
 const SignUp = () => {
     const {register,handleSubmit,watch,formState:{errors} } = useForm();
-    const onSubmit = data => console.log(watch(data));
+    const {createUser} = useContext(AuthContext);
+    const onSubmit = data =>{
+      createUser(data.email,data.password) 
+      .then(result =>{
+        const createdUser = result.user;
+        console.log(createUser);
+      })
+
+
+    }  
   return (
-    <>
+
   
 
 <div>
@@ -21,7 +32,7 @@ const SignUp = () => {
               et a id nisi.
             </p>
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-3 px-2">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <label className="label">
@@ -63,16 +74,16 @@ const SignUp = () => {
                   required:true,
                   min:6 ,
                   maxLength:20,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/ 
+                  pattern:/^(?=.*[a-z])(?=.*[A-Z])/
                 
                   })}
                   placeholder="password"
                   className="input input-bordered"
                   />
-                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password is required</p>}
-                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must be 6 charracters</p>}
-                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must be less than 20 charracters</p>}
-                  {errors.passsword?.type === 'minLength' && <p className="text-red-600">Password must have one uppercase and one lowercase and one number</p>}
+                  {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
+                  {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 charracters</p>}
+                  {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 charracters</p>}
+                  {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one uppercase and one lowercase and one number</p>}
 
                 
                 <label className="label">
@@ -82,7 +93,7 @@ const SignUp = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Sign Up</button>
+                <input typeof="" className="btn btn-primary" type="submit" value="Sign Up" />
               </div>
             </form>
             <p>Already have an account ? <Link to={'/login'}>Login here</Link></p>
@@ -91,7 +102,7 @@ const SignUp = () => {
       </div>
     </div>
     
-    </>
+
   );
 };
 

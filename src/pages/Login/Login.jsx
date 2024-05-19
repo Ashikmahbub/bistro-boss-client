@@ -32,22 +32,25 @@ const Login = () => {
         console.log(email,password);
         userSignIn(email,password)
         .then(result =>{
-          const user = result.user;
-          console.log(user);
+          const loggedUser = result.user;
+          console.log(loggedUser);
         })
     }
     return (
-     <>
-        <title>Our Menu</title>
+     <> 
+     <Helmet>
+          <title>Bistro Boss | Login</title>
+     </Helmet>
+       
       
          <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen bg-base-200 py-10">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
             
           </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-3 px-2">
           <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
