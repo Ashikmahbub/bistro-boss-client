@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate,   validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../components/Provider/Authprovider';
 import { Link } from 'react-router-dom';
 import { Helmet } from "react-helmet-async";
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const captchaRef = useRef(null);
@@ -30,12 +31,28 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email,password);
+         
         userSignIn(email,password)
         .then(result =>{
           const loggedUser = result.user;
           console.log(loggedUser);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "You have logged in successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+
         })
-    }
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode,errorMessage);
+
+        
+    });
+  }
     return (
      <> 
      <Helmet>

@@ -16,13 +16,14 @@ const Authprovider = ({children}) => {
 
 
     }
-    const userSignIn = (auth,email,password) =>{
+    const userSignIn = (email,password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth,email,password);
 
     }
     const userSignOut = ()=>{
         setLoading(true);
+        
         return signOut(auth);
     }
     useEffect(()=>{
