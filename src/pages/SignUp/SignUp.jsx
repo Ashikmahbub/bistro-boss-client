@@ -12,7 +12,7 @@ const SignUp = () => {
       createUser(data.email,data.password) 
       .then(result =>{
         const createdUser = result.user;
-        console.log(createUser);
+        console.log(createdUser);
       })
 
 
