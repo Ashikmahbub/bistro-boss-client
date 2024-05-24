@@ -11,6 +11,7 @@ const SignUp = () => {
     const onSubmit = data =>{
       console.log(data);
       createUser(data.email,data.password)
+      
       .then(result =>{
         const createdUser = result.user;
         console.log(createdUser);
