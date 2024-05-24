@@ -9,14 +9,15 @@ const SignUp = () => {
     const {register,handleSubmit,watch,formState:{errors} } = useForm();
     const {createUser} = useContext(AuthContext);
     const onSubmit = data =>{
-      createUser(data.email,data.password) 
+      console.log(data);
+      createUser(data.email,data.password)
       .then(result =>{
         const createdUser = result.user;
         console.log(createdUser);
       })
 
 
-    }  
+    }   
   return (
 
   
@@ -48,6 +49,21 @@ const SignUp = () => {
                 
                 />
                 {errors.name && <span className="text-red-700">Name field is required</span>}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Img Url"
+                  {...register('imgUrl',{required:true})}
+                  name="imgUrl"
+                  className="input input-bordered"
+                  
+                
+                />
+                {errors.imgUrl && <span className="text-red-700">Image url  is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
