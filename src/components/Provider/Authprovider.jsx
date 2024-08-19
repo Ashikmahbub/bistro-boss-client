@@ -10,12 +10,35 @@ const Authprovider = ({children}) => {
  
     const [user,setUser] = useState(null)
     const [loading,setLoading] = useState(true);
-    const createUser = (email,password) =>{
+    const [error, setError] = useState('');
+    const createUser = async(email,password) =>{
+        setError('');
         setLoading(true);
-        return createUserWithEmailAndPassword(auth,email,password);
+        try
+        {
+            await createUserWithEmailAndPassword(auth,email,password);
+        }
+        catch
+        
+            (error){
+                setLoading(false);
+                if(error.code === 'auth/email-already-in-use')
+                {
+                 setError('The email already in use.Please try different email');
 
+                }
+                else
+                {
+                
+                setError('An error occured.Please try again');
+                }
+            }
+            return { success: false, error: error.message };
 
-    }
+        }
+       
+
+    
     const userSignIn = (email,password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth,email,password);

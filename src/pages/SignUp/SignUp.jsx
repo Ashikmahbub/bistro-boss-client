@@ -1,125 +1,124 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { Zoom } from "swiper/modules";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/Provider/Authprovider";
-
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-    const {register,handleSubmit,watch,formState:{errors} } = useForm();
-    const {createUser} = useContext(AuthContext);
-    const onSubmit = data =>{
-      console.log(data);
-      createUser(data.email,data.password)
-      
-      .then(result =>{
-        const createdUser = result.user;
-        console.log(createdUser);
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    console.log(data);
+
+    // Create user first
+    createUser(data.email, data.password)
+      .then(() => {
+        // After successful user creation, update profile
+        return updateUserProfile(data.name, data.photoURL);
       })
+      .then(() => {
+        // After updating the profile, show success message and redirect
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your account has been created successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        // Handle any error that occurs during the sign-up process
+        console.error(error);
+      });
+  };
 
-
-    }   
   return (
-
-  
-
-<div>
     <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Sign up now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
-          </div>
-          <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-3 px-2">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="name"
-                  {...register('name',{required:true})}
-                  name="name"
-                  className="input input-bordered"
-                  
-                
-                />
-                {errors.name && <span className="text-red-700">Name field is required</span>}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Photo Url</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="Img Url"
-                  {...register('imgUrl',{required:true})}
-                  name="imgUrl"
-                  className="input input-bordered"
-                  
-                
-                />
-                {errors.imgUrl && <span className="text-red-700">Image url  is required</span>}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  {...register('email',{required:true})}
-                  placeholder="email"
-                  className="input input-bordered"
-                
-                />
-                {errors.email && <span className="text-red-700">Email field is required</span>}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  {...register('password',{
-                  required:true,
-                  min:6 ,
-                  maxLength:20,
-                  pattern:/^(?=.*[a-z])(?=.*[A-Z])/
-                
-                  })}
-                  placeholder="password"
-                  className="input input-bordered"
-                  />
-                  {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
-                  {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 charracters</p>}
-                  {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 charracters</p>}
-                  {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one uppercase and one lowercase and one number</p>}
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">Sign up now!</h1>
+          <p className="py-6">
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae
+            et a id nisi.
+          </p>
+        </div>
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-3 px-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Name"
+                {...register("name", { required: true })}
+                className="input input-bordered"
+              />
+              {errors.name && <span className="text-red-700">Name field is required</span>}
+            </div>
 
-                
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <input typeof="" className="btn btn-primary" type="submit" value="Sign Up" />
-              </div>
-            </form>
-            <p>Already have an account ? <Link to={'/login'}>Login here</Link></p>
-          </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Photo URL"
+                {...register("photoURL", { required: true })}
+                className="input input-bordered"
+              />
+              {errors.photoURL && <span className="text-red-700">Photo URL is required</span>}
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                {...register("email", { required: true })}
+                placeholder="Email"
+                className="input input-bordered"
+              />
+              {errors.email && <span className="text-red-700">Email field is required</span>}
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                })}
+                placeholder="Password"
+                className="input input-bordered"
+              />
+              {errors.password?.type === "required" && <p className="text-red-600">Password is required</p>}
+              {errors.password?.type === "minLength" && <p className="text-red-600">Password must be at least 6 characters</p>}
+              {errors.password?.type === "maxLength" && <p className="text-red-600">Password must be less than 20 characters</p>}
+              {errors.password?.type === "pattern" && <p className="text-red-600">Password must contain at least one uppercase letter, one lowercase letter, and one number</p>}
+            </div>
+
+            <div className="form-control mt-6">
+              <input className="btn btn-primary" type="submit" value="Sign Up" />
+            </div>
+          </form>
+          <p>
+            Already have an account? <Link to="/login">Login here</Link>
+          </p>
         </div>
       </div>
     </div>
-    
-
   );
 };
 
