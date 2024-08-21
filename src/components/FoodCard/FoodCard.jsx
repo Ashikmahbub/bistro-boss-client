@@ -1,7 +1,13 @@
+import { useContext } from "react";
+import { AuthContext } from "../Provider/Authprovider";
+
 const FoodCard = ({item}) => {
     const {name,image,price,recipe} =item;
+    const {user} = useContext(AuthContext);
     const handleAddToCart = food =>{
-      console.log(food);
+      
+
+      console.log(food,user);
       
     }
   return (
